@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.gstatic.com https://code.jquery.com data: 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; media-src *; img-src * 'self' data: content:;">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <title>Noticias sobre Tesla con AJAX</title>
+
+    <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Contenedor de noticias -->
+    <div class="container" id="news-container">
+        <h2>Últimas noticias sobre Tesla</h2>
+        <div id="news-list"></div>  <!-- Aquí se mostrarán las noticias -->
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        // Noticias simuladas sobre Tesla (simulando el contenido de la API)
+        const newsData = [
+            {
+                title: "Tesla lanza nuevo modelo de coche eléctrico",
+                description: "Tesla ha anunciado el lanzamiento de su nuevo modelo de coche eléctrico, el Model X, que promete ser más rápido y eficiente.",
+                url: "https://www.tesla.com/new-model-x",
+                urlToImage: "https://www.tesla.com/sites/default/files/images/homepage/promo-Tesla-ModelX.png",
+                source: { name: "Tesla News" }
+            },
+            {
+                title: "Tesla revoluciona la industria de las baterías",
+                description: "Tesla ha presentado una nueva batería que podría cambiar la forma en que almacenamos energía para siempre.",
+                url: "https://www.tesla.com/new-battery",
+                urlToImage: "https://www.tesla.com/sites/default/files/images/energy/powerwall.png",
+                source: { name: "Tech News" }
+            },
+            {
+                title: "Tesla entra en el mercado de la inteligencia artificial",
+                description: "Tesla ha anunciado su entrada en el mercado de la inteligencia artificial, desarrollando nuevos sistemas para sus coches autónomos.",
+                url: "https://www.tesla.com/ai-news",
+                urlToImage: "https://www.tesla.com/sites/default/files/images/homepage/ai-car.png",
+                source: { name: "Business Insider" }
+            },
+            {
+                title: "Tesla abre nueva planta de producción en Berlín",
+                description: "Tesla ha inaugurado una nueva planta de producción en Berlín, con el objetivo de aumentar su capacidad de fabricación en Europa.",
+                url: "https://www.tesla.com/berlin-factory",
+                urlToImage: "https://www.tesla.com/sites/default/files/images/berlin-factory.jpg",
+                source: { name: "Tesla News" }
+            }
+        ];
+
+        // Función para mostrar las noticias
+        function displayNews() {
+            let newsHTML = '';
+            newsData.forEach(article => {
+                newsHTML += `
+                    <div class="news-item">
+                        <h5><a href="${article.url}" target="_blank">${article.title}</a></h5>
+                        <p>${article.description}</p>
+                        <!-- Imagen (si está disponible) -->
+                        ${article.urlToImage ? `<img src="${article.urlToImage}" alt="Imagen de noticia" class="responsive-img">` : ''}
+                        <p><strong>${article.source.name}</strong></p>
+                    </div>
+                `;
+            });
+            $('#news-list').html(newsHTML);  // Insertar las noticias en el contenedor
+        }
+
+        // Ejecutar la función cuando la página esté lista
+        $(document).ready(function() {
+            displayNews();  // Llamar la función para mostrar las noticias simuladas
+        });
+    </script>
+
+</body>
+</html>
