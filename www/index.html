@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.gstatic.com https://code.jquery.com data: https://newsapi.org 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; media-src *; img-src * 'self' data: content:;">
-    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-    <title>Noticias sobre Tesla con AJAX</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <title>Example with Sidenav</title>
 
-    <!-- Materialize CSS -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+        <!-- Materialize CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    </head>
+    <body>
+        <!-- Header with Navbar for mobile (Sidenav trigger) -->
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+            </nav>
+        </header>
 
-    <!-- Puedes agregar tu propio archivo de CSS aquí si es necesario -->
-    <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
+        <!-- Sidenav (menú lateral) -->
+        <ul id="slide-out" class="sidenav">
+            <li><a href="#!"><i class="material-icons">home</i>Inicio</a></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>Servicios</a></li>
+            <li><a href="#!"><i class="material-icons">info</i>Acerca de</a></li>
+            <li><a href="#!"><i class="material-icons">contact_mail</i>Contacto</a></li>
+        </ul>
 
-    <!-- Contenedor de noticias -->
-    <div class="container" id="news-container">
-        <h2>Últimas noticias sobre Tesla</h2>
-        <div id="news-list"></div>  <!-- Aquí se mostrarán las noticias -->
-    </div>
+        <!-- Tabs -->
+        <ul id="tabs-swipe-demo" class="tabs">
+            <li class="tab col s3"><a href="#test-swipe-1">Test 1</a></li>
+            <li class="tab col s3"><a class="active" href="#test-swipe-2">Test 2</a></li>
+            <li class="tab col s3"><a href="#test-swipe-3">Test 3</a></li>
+        </ul>
 
-    <!-- JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <div id="test-swipe-1" class="col s12 blue">Test 1</div>
+        <div id="test-swipe-2" class="col s12 red">Test 2</div>
+        <div id="test-swipe-3" class="col s12 green">Test 3</div>
 
-    <script>
-        // Función para obtener las noticias de NewsAPI relacionadas con Tesla
-        function fetchNews() {
-            $.ajax({
-                method: "GET",
-                url: "https://newsapi.org/v2/everything?q=tesla&from=2024-11-17&sortBy=publishedAt&apiKey=API_KEY",  // Reemplaza con tu clave de API
-                dataType: "json",
-                success: function(response) {
-                    let newsHTML = '';
-                    response.articles.forEach(article => {
-                        newsHTML += `
-                            <div class="news-item">
-                                <h5><a href="${article.url}" target="_blank">${article.title}</a></h5>
-                                <p>${article.description}</p>
-                                <!-- Imagen (si está disponible) -->
-                                ${article.urlToImage ? `<img src="${article.urlToImage}" alt="Imagen de noticia" class="responsive-img">` : ''}
-                                <p><strong>${article.source.name}</strong></p>
-                            </div>
-                        `;
-                    });
-                    $('#news-list').html(newsHTML);  // Insertar las noticias en el contenedor
-                },
-                error: function() {
-                    alert("Hubo un error al obtener las noticias.");
-                }
+        <!-- JavaScript -->
+        <script src="js/jquery-3.7.1.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/index.js"></script>
+
+        <!-- Initialize the Sidenav -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems);
             });
-        }
-
-        // Ejecutar la función cuando la página esté lista
-        $(document).ready(function() {
-            fetchNews();  // Llamar la función para cargar las noticias
-        });
-    </script>
-
-</body>
+        </script>
+    </body>
 </html>
