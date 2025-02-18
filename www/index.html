@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://swapi.dev; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <title>Example with Sidenav</title>
+
+        <!-- Materialize CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    </head>
+    <body>
+        <!-- Header with Navbar for mobile (Sidenav trigger) -->
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Sidenav (menú lateral) -->
+        <ul id="slide-out" class="sidenav">
+            <li><a href="#!"><i class="material-icons">home</i>Inicio</a></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>Servicios</a></li>
+            <li><a href="#!"><i class="material-icons">info</i>Acerca de</a></li>
+            <li><a href="#!"><i class="material-icons">contact_mail</i>Contacto</a></li>
+        </ul>
+
+        <!-- Tabs -->
+        <ul id="tabs-swipe-demo" class="tabs">
+            <li class="tab col s3"><a href="#test-swipe-1">Test 1</a></li>
+            <li class="tab col s3"><a class="active" href="#test-swipe-2">Test 2</a></li>
+            <li class="tab col s3"><a href="#test-swipe-3">Test 3</a></li>
+        </ul>
+
+        <div id="test-swipe-1" class="col s12 blue">
+            <button id="go-to-test-2" class="btn waves-effect waves-light">Go to Test 2</button>
+        </div>
+        
+
+        <div id="test-swipe-2" class="col s12">
+            <!-- Buscador de personajes de Star Wars -->
+            <h4>Buscar Personaje de Star Wars</h4>
+            <label for="character-name">Introduce el nombre del personaje:</label>
+            <input type="text" id="character-name" placeholder="Ej. luke, vader">
+            <button id="search-character" class="btn waves-effect waves-light">Buscar Personaje</button>
+            
+            <!-- Resultado de la búsqueda -->
+            <div id="character-result" style="margin-top: 20px;"></div>
+        
+            <!-- Collection List para los personajes -->
+            <div class="collection" id="character-list">
+                <a href="#!" class="collection-item">Personajes</a>
+            </div>
+        </div>
+        
+
+        <div id="test-swipe-3" class="col s12 green">
+            <h4>Captura una foto</h4>
+        
+            <!-- Contenedor de video y foto -->
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <!-- Video de la cámara -->
+                <video id="video" width="320" height="240" autoplay style="border: 2px solid #000;"></video>
+        
+                <!-- Imagen capturada (estará oculta al inicio) -->
+                <img id="photo" style="display: none; border: 2px solid #000;" width="320" height="240">
+            </div>
+        
+            <!-- Botón para capturar la foto -->
+            <button id="take-photo" class="btn waves-effect waves-light" style="margin-top: 20px;">Tomar Foto</button>
+        
+            <!-- Canvas oculto para capturar la foto -->
+            <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+        </div>
+        
+        
+
+        <!-- JavaScript -->
+        <script src="js/jquery-3.7.1.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
